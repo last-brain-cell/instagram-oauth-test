@@ -5,3 +5,4 @@ pydantic~=2.11.5
 starlette~=0.46.2
 httpx~=0.28.1
 python-dotenv~=1.1.0
+fastapi[standard]
