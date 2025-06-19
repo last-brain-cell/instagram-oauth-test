@@ -90,6 +90,9 @@ async def get_insights(account_id: str = USER_ID, access_token: str = ACCESS_TOK
     ]
     async with httpx.AsyncClient() as client:
         response = await client.get(f"https://graph.instagram.com/{account_id}/insights?metric={','.join(metrics)}&metric_type=total_value&period=day&access_token={access_token}")
+
+    # TODO: Add Ohter User Info(not insights) here as well
+
     return JSONResponse(content=response.json())
 
 
@@ -138,6 +141,9 @@ async def get_insights(media_id: str, access_token: str = ACCESS_TOKEN, media_ty
         metrics = video_metrics
     async with httpx.AsyncClient() as client:
         response = await client.get(f"https://graph.instagram.com/{media_id}/insights?metric={','.join(metrics)}&metric_type=total_value&period=day&access_token={access_token}")
+
+    #TODO: Add Ohter Media Info(not insights) here as well
+
     return JSONResponse(content=response.json())
 
 
