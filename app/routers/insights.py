@@ -2,13 +2,14 @@ import os
 import httpx
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import JSONResponse
-
 from app.models import MediaType
+from dotenv import load_dotenv
 
 insights_router = APIRouter()
+load_dotenv()
 
 INSTAGRAM_CLIENT_ID = os.getenv("CLIENT_ID")
-INSTAGRAM_CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+INSTAGRAM_CLIENT_SECRET = os  .getenv("CLIENT_SECRET")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
 USER_ID = os.getenv("USER_ID")
@@ -18,7 +19,6 @@ async def instagram_callback(request: Request):
     code = request.query_params.get("code")
     code = code.strip("#_") if code else None
     error = request.query_params.get("error")
-
 
     if error:
         raise HTTPException(status_code=400, detail=f"Instagram authorization error: {error}")
